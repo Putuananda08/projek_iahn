@@ -41,7 +41,7 @@ include "session.php";
                   <div class="box-tools pull-right">
                   <form action='departemen.php' method="POST">
     	             <div class="input-group" style="width: 230px;">
-                      <input type="text" name="qcari" class="form-control input-sm pull-right" placeholder="Cari Usename Atau Nama">
+                      <input type="text" name="qcari" class="form-control input-sm pull-right" placeholder="Cari Nama Departement">
                       <div class="input-group-btn">
                         <button type="submit" class="btn btn-sm btn-default tooltips" data-placement="bottom" data-toggle="tooltip" title="Cari Data"><i class="fa fa-search"></i></button>
                         <a href="departemen.php" class="btn btn-sm btn-success tooltips" data-placement="bottom" data-toggle="tooltip" title="Refresh"><i class="fa fa-refresh"></i></a>
@@ -81,8 +81,7 @@ include "session.php";
                     if(isset($_POST['qcari'])){
 	               $qcari=$_POST['qcari'];
 	               $query1="SELECT * FROM  departemen 
-	               where fullname like '%$qcari%'
-	               or username like '%$qcari%'  ";
+	               where nama_dept like '%$qcari%'";
                     }
                     $tampil=mysqli_query($koneksi, $query1) or die(mysqli_error($koneksi));
                     ?>

@@ -14,13 +14,12 @@ $columns = array(
     1 => 'nama', 
 	2 => 'tanggal_masuk',
 	3 => 'departemen',
-	4 => 'jabatan',
-	5 => 'status',
-    6 => 'jumlah_cuti'
+	4 => 'status',
+    5 => 'jumlah_cuti'
 );
 
 // getting total number records without any search
-$sql = "SELECT nip, nama, tanggal_masuk, departemen, jabatan, status, jumlah_cuti";
+$sql = "SELECT nip, nama, tanggal_masuk, departemen, status, jumlah_cuti";
 $sql.=" FROM karyawan";
 $query=mysqli_query($conn, $sql) or die("ajaxin-grid-data.php: get Karyawan");
 $totalData = mysqli_num_rows($query);
@@ -29,13 +28,12 @@ $totalFiltered = $totalData;  // when there is no search parameter then total nu
 
 if( !empty($requestData['search']['value']) ) {
 	// if there is a search parameter
-	$sql = "SELECT nip, nama, tanggal_masuk, departemen, jabatan, status, jumlah_cuti";
+	$sql = "SELECT nip, nama, tanggal_masuk, departemen, status, jumlah_cuti";
 	$sql.=" FROM karyawan";
 	$sql.=" WHERE nip LIKE '".$requestData['search']['value']."%' ";    // $requestData['search']['value'] contains search parameter
 	$sql.=" OR nama LIKE '".$requestData['search']['value']."%' ";
 	$sql.=" OR tanggal_masuk LIKE '".$requestData['search']['value']."%' ";
     $sql.=" OR departemen LIKE '".$requestData['search']['value']."%' ";
-	$sql.=" OR jabatan LIKE '".$requestData['search']['value']."%' ";
 	$sql.=" OR status LIKE '".$requestData['search']['value']."%' ";
     $sql.=" OR jumlah_cuti LIKE '".$requestData['search']['value']."%' ";
 	$query=mysqli_query($conn, $sql) or die("ajax-grid-data.php: get Karyawan");
@@ -46,7 +44,7 @@ if( !empty($requestData['search']['value']) ) {
 	
 } else {	
 
-	$sql = "SELECT nip, nama, tanggal_masuk, departemen, jabatan, status, jumlah_cuti";
+	$sql = "SELECT nip, nama, tanggal_masuk, departemen, status, jumlah_cuti";
 	$sql.=" FROM karyawan";
 	$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]."   ".$requestData['order'][0]['dir']."   LIMIT ".$requestData['start']." ,".$requestData['length']."   ";
 	$query=mysqli_query($conn, $sql) or die("ajaxin-grid-data.php: get Karyawan");   
@@ -61,7 +59,6 @@ while( $row=mysqli_fetch_array($query) ) {  // preparing an array
     $nestedData[] = $row["nama"];
 	$nestedData[] = $row["tanggal_masuk"];
 	$nestedData[] = $row["departemen"];
-	$nestedData[] = $row["jabatan"];
 	$nestedData[] = $row["status"];
 	$nestedData[] = $row["jumlah_cuti"];
     $nestedData[] = '<td><center>

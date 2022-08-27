@@ -17,12 +17,12 @@ include "session.php";
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Jabatan
-            <small>IAHN GDE PUDJA MATARAM</small>
+            Admin
+            <small>Aplikasi Invoice</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="index.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Jabatan</li>
+            <li class="active">Admin</li>
           </ol>
         </section>
 
@@ -37,14 +37,14 @@ include "session.php";
               <div class="box box-primary">
                 <div class="box-header">
                   <i class="ion ion-clipboard"></i>
-                  <h3 class="box-title">Data Jabatan</h3>
+                  <h3 class="box-title">Data Admin</h3>
                   <div class="box-tools pull-right">
-                  <form action='departemen.php' method="POST">
+                  <form action='admin.php' method="POST">
     	             <div class="input-group" style="width: 230px;">
-                      <input type="text" name="qcari" class="form-control input-sm pull-right" placeholder="Cari Jabatan">
+                      <input type="text" name="qcari" class="form-control input-sm pull-right" placeholder="Cari Usename Atau Nama">
                       <div class="input-group-btn">
                         <button type="submit" class="btn btn-sm btn-default tooltips" data-placement="bottom" data-toggle="tooltip" title="Cari Data"><i class="fa fa-search"></i></button>
-                        <a href="departemen.php" class="btn btn-sm btn-success tooltips" data-placement="bottom" data-toggle="tooltip" title="Refresh"><i class="fa fa-refresh"></i></a>
+                        <a href="admin.php" class="btn btn-sm btn-success tooltips" data-placement="bottom" data-toggle="tooltip" title="Refresh"><i class="fa fa-refresh"></i></a>
                       </div>
                     </div>
                     </form>
@@ -58,42 +58,27 @@ include "session.php";
            <input type='submit' value='Cari Data' class="btn btn-sm btn-primary" /> <a href='admin.php' class="btn btn-sm btn-success" >Refresh</i></a>
           	</div>
             </form>-->
-            <?php
-             if(isset($_GET['aksi']) == 'hapus'){
-				$id = $_GET['kd'];
-				$cek = mysqli_query($koneksi, "SELECT * FROM jabatan WHERE id_jabatan='$id'");
-				if(mysqli_num_rows($cek) == 0){
-					echo '<div class="alert alert-warning alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Data tidak ditemukan.</div>';
-				}else{
-					$delete = mysqli_query($koneksi, "DELETE FROM jabatan WHERE id_jabatan='$id'");
-					if($delete){
-						echo '<div class="alert alert-primary alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Data berhasil dihapus.</div>';
-					}else{
-						echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Data gagal dihapus.</div>';
-					}
-				}
-			}
-			?>
-
                   <?php
-                    $query1="select * from jabatan";
+                    $query1="select * from user";
                     
                     if(isset($_POST['qcari'])){
 	               $qcari=$_POST['qcari'];
-	               $query1="SELECT * FROM  jabatan 
-	               where jabatan like '%$qcari%'
-	               or tunjangan like '%$qcari%'  ";
+	               $query1="SELECT * FROM  user 
+	               where fullname like '%$qcari%'
+	               or username like '%$qcari%'  ";
                     }
-                    $tampil=mysqli_query($koneksi, $query1) or die(mysqli_error($koneksi));
+                    $tampil=mysqli_query($koneksi, $query1) or die(mysqli_error());
                     ?>
                   <table id="example" class="table table-responsive table-hover table-bordered">
                   <thead>
                       <tr>
                         <th><center>No </center></th>
-                        <th><center>Id Jabatan </center></th>
-                        <th><center>Jabatan </center></th>
-                        <th><center>Tunjangan </center></th>
-                        <th><center>Tools </center></th>
+                        <th><center>Username </center></th>
+                        <th><center>Password </center></th>
+                        <th><center>Fullname </center></th>
+                        <th><center>No Handphone </center></th>
+                        <th><center>level </center></th>
+                        <th><center>Tools</center></th>
                       </tr>
                   </thead>
                      <?php 
@@ -103,11 +88,24 @@ include "session.php";
                     <tbody>
                     <tr>
                     <td><center><?php echo $no; ?></center></td>
-                    <td><center><?php echo $data['id_jabatan'];?></center></td>
-                    <td><center><?php echo $data['jabatan'];?></center></td>
-                    <td><center><?php echo $data['tunjangan'];?></center></td>
-                    <td><center><div id="thanks"><a class="btn btn-sm btn-primary" data-placement="bottom" data-toggle="tooltip" title="Edit Jabatan" href="edit-jabatan.php?aksi=edit&kd=<?php echo $data['id_jabatan'];?>"><span class="glyphicon glyphicon-edit"></span></a>  
-                        <a onclick="return confirm ('Yakin hapus <?php echo $data['jabatan'];?>.?');" class="btn btn-sm btn-danger tooltips" data-placement="bottom" data-toggle="tooltip" title="Hapus Jabatan" href="jabatan.php?aksi=hapus&kd=<?php echo $data['id_jabatan'];?>"><span class="glyphicon glyphicon-trash"></a></center></td></tr></div>
+                    <td><center><?php echo $data['username'];?></center></td>
+                    <td><center><?php echo $data['password'];?></center></td>
+                    <td><center><a href="detail-admin.php?hal=edit&kd=<?php echo $data['user_id'];?>"><span class="glyphicon glyphicon-user"></span> <?php echo $data['fullname']; ?></a></center></td>
+                    <td><center><?php echo $data['no_hp'];?></center></td>
+                    <td><center><?php 
+                            if($data['level'] == 'admin'){
+								echo '<span class="label label-success">Admin</span>';
+							}
+                            else if ($data['level'] == 'superuser' ){
+								echo '<span class="label label-primary">Super User</span>';
+							}
+                            else if ($data['level'] == 'user' ){
+								echo '<span class="label label-info">User</span>';
+							}
+                             ?></center></td>
+                    <!--<td><center><img src="<?php //echo $data['gambar']; ?>" class="img-circle" height="80" width="75" style="border: 3px solid #888;" /></center></td>-->
+                    <td><center><div id="thanks"><a class="btn btn-sm btn-primary" data-placement="bottom" data-toggle="tooltip" title="Edit Admin" href="edit-admin.php?hal=edit&kd=<?php echo $data['user_id'];?>"><span class="glyphicon glyphicon-edit"></span></a>  
+                        <a onclick="return confirm ('Yakin hapus <?php echo $data['fullname'];?>.?');" class="btn btn-sm btn-danger tooltips" data-placement="bottom" data-toggle="tooltip" title="Hapus Admin" href="hapus-admin.php?hal=hapus&kd=<?php echo $data['user_id'];?>"><span class="glyphicon glyphicon-trash"></a></center></td></tr></div>
                  <?php   
               } 
               ?>
@@ -115,7 +113,7 @@ include "session.php";
                    </table>
                 </div><!-- /.box-body -->
                 <div class="box-footer clearfix no-border">
-                  <a href="input-jabatan.php" class="btn btn-sm btn-default pull-right"><i class="fa fa-plus"></i> Tambah Jabatan</a>
+                  <a href="input-admin.php" class="btn btn-sm btn-default pull-right"><i class="fa fa-plus"></i> Tambah Admin</a>
                   </div>
               </div><!-- /.box -->
 

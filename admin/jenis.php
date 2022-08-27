@@ -39,12 +39,12 @@ include "session.php";
                   <i class="ion ion-clipboard"></i>
                   <h3 class="box-title">Data Jenis Cuti</h3>
                   <div class="box-tools pull-right">
-                  <form action='departemen.php' method="POST">
+                  <form action='jenis.php' method="POST">
     	             <div class="input-group" style="width: 230px;">
-                      <input type="text" name="qcari" class="form-control input-sm pull-right" placeholder="Cari Jabatan">
+                      <input type="text" name="qcari" class="form-control input-sm pull-right" placeholder="Cari Jenis Cuti">
                       <div class="input-group-btn">
                         <button type="submit" class="btn btn-sm btn-default tooltips" data-placement="bottom" data-toggle="tooltip" title="Cari Data"><i class="fa fa-search"></i></button>
-                        <a href="departemen.php" class="btn btn-sm btn-success tooltips" data-placement="bottom" data-toggle="tooltip" title="Refresh"><i class="fa fa-refresh"></i></a>
+                        <a href="jenis.php" class="btn btn-sm btn-success tooltips" data-placement="bottom" data-toggle="tooltip" title="Refresh"><i class="fa fa-refresh"></i></a>
                       </div>
                     </div>
                     </form>
@@ -103,8 +103,8 @@ include "session.php";
                     <td><center><?php echo $no; ?></center></td>
                     <td><center><?php echo $data['id_cuti'];?></center></td>
                     <td><center><?php echo $data['nama_cuti'];?></center></td>
-                    <td><center><div id="thanks"><a class="btn btn-sm btn-primary" data-placement="bottom" data-toggle="tooltip" title="Edit Jabatan" href="edit-jenis.php?aksi=edit&kd=<?php echo $data['id_cuti'];?>"><span class="glyphicon glyphicon-edit"></span></a>  
-                        <a onclick="return confirm ('Yakin hapus <?php echo $data['nama_cuti'];?>.?');" class="btn btn-sm btn-danger tooltips" data-placement="bottom" data-toggle="tooltip" title="Hapus Jabatan" href="jenis.php?aksi=hapus&kd=<?php echo $data['id_cuti'];?>"><span class="glyphicon glyphicon-trash"></a></center></td></tr></div>
+                    <td><center><div id="thanks"><a class="btn btn-sm btn-primary" data-placement="bottom" data-toggle="tooltip" title="Edit Cuti" href="edit-jenis.php?aksi=edit&kd=<?php echo $data['id_cuti'];?>"><span class="glyphicon glyphicon-edit"></span></a>  
+                        <a onclick="return confirm ('Yakin hapus <?php echo $data['nama_cuti'];?>.?');" class="btn btn-sm btn-danger tooltips" data-placement="bottom" data-toggle="tooltip" title="Hapus Jenis Cuti" href="jenis.php?aksi=hapus&kd=<?php echo $data['id_cuti'];?>"><span class="glyphicon glyphicon-trash"></a></center></td></tr></div>
                  <?php   
               } 
               ?>

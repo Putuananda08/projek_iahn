@@ -27,9 +27,7 @@ header("Content-Disposition: attachment; filename=karyawan.xls");
 	
 			<tr>
 			
-			 <td width="0px">Tanggal : <?php echo date("d-m-Y") ?></td>  
-			 
-			 
+			 <td width="0px">Tanggal Cetak: <?php echo date("l,d-m-Y") ?></td>  
 		 </tr>
 	</table>	
 		 

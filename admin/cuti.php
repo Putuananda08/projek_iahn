@@ -16,7 +16,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Cuti
+            Pengajuan Cuti
             <small>IAHN GDE PUDJA MATARAM</small>
           </h1>
           <ol class="breadcrumb">
@@ -56,7 +56,7 @@
 			}else{
 				$row = mysqli_fetch_assoc($sql);
             }
-        $jumlah= $row['jumlah'];
+        $jumlah= $row['lama_cuti'];
 				$cek = mysqli_query($koneksi, "SELECT * FROM cuti WHERE kode='$id'");
 				if(mysqli_num_rows($cek) == 0){
 					echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Data tidak ditemukan.</div>';
@@ -87,13 +87,19 @@
       <tr>
 	  
        <th>Kode</th>
-	   <th>Nip</th>
-       <th>Tanggal Awal</th>
-       <th>Tanggal Akhir</th>
-       <th>Jumlah</th>
+	     <th>NIP</th>
+	     <th>Jabatan</th>
+	     <th>Masa Kerja</th>
+	     <th>Alasan Cuti</th>
+       <th>Tanggal Mulai</th>
+       <th>Tanggal Selesai</th>
+       <th>Lama Cuti</th>
        <th>Jenis Cuti</th>
-       <th>Keterangan</th>
-       <th>Status</th>
+       <th>Keterangan Cuti</th>
+       <th>Alamat Cuti</th>
+       <th>No Telpon</th>
+       <th>NIP Atasan Langsung</th>
+       <!-- <th>Status</th> -->
 	   <th class="text-center"> Action </th> 
 	  
       </tr>

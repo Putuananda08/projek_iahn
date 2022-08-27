@@ -28,7 +28,7 @@
   <body class="hold-transition" background="dist/img/wallpaper.jpg">
     <div class="login-box">
       <div class="login-logo">
-        <a href="#" style="color: white;"><!-- <span class="glyphicon glyphicon-th-large"></span> --> IAHN GDE PUDJA MATARAM </a>
+        <a href="#" style="color: white;"><!-- <span class="glyphicon glyphicon-th-large"></span> --> APLIKASI CUTI IAHN GDE PUDJA MATARAM </a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
       <center><img src="dist/img/IAHN.jpeg" style="width: 200px;" /></center>

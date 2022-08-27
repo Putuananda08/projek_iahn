@@ -27,19 +27,18 @@ if (mysqli_num_rows($q) == 1) {
     $_SESSION['username']   = $username;
     $_SESSION['nama']       = $row['nama'];
     $_SESSION['departemen'] = $row['departemen'];
+    $_SESSION['status']     = $row['status'];
     $_SESSION['jabatan']    = $row['jabatan'];	
     $_SESSION['level']      = $row['level'];
     $_SESSION['gambar']     = $row['gambar'];
     
     if ($_SESSION['level'] == 'Admin'){
         header('location:admin/index.php');
-    } else if ($_SESSION['level'] == 'Superuser'){
-        header('location:superuser/index.php');
-    } else if ($_SESSION['level'] == 'User'){
+    } 
+    else if ($_SESSION['level'] == 'User'){
         header('location:user/index.php');
     }
 	
 } else {
 	header('location:index.php?error=Anda Belum Terdaftar!');
 }
-?>

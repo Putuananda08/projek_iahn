@@ -15,12 +15,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Jabatan
-            <small>IAHN GDE PUDJA MATARAM</small>
+            Admin
+            <small>Aplikasi Invoice</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="index.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="active">Jabatan</li>
+            <li class="active">Admin</li>
           </ol>
         </section>
 
@@ -35,51 +35,73 @@
               <div class="box box-primary">
                 <div class="box-header">
                   <i class="ion ion-clipboard"></i>
-                  <h3 class="box-title">Input Data Jabatan</h3>
+                  <h3 class="box-title">Input Data Admin</h3>
+                  <!-- <div class="box-tools pull-right">
+                    <ul class="pagination pagination-sm inline">
+                      <li><a href="#">&laquo;</a></li>
+                      <li><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li><a href="#">&raquo;</a></li>
+                    </ul>
+                  </div> -->
                 </div><!-- /.box-header -->
-                <?php
-if(isset($_POST['simpan'])){
-$id_jabatan  = $_POST['id_jabatan'];
-$jabatan     = $_POST['jabatan'];
-$tunjangan   = $_POST['tunjangan'];
-
-$query = mysqli_query($koneksi, "INSERT INTO jabatan (id_jabatan, jabatan, tunjangan) VALUES ('$id_jabatan', '$jabatan', '$tunjangan')");
-if ($query){
-	echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data berhasil disimpan.</div>';
-				}else{
-					echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data gagal disimpan, silahkan coba lagi.</div>';
-				}
-}
-
-                ?>
                 <div class="box-body">
                   <div class="form-panel">
-                      <form class="form-horizontal style-form" action="input-jabatan.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
+                      <form class="form-horizontal style-form" action="insert-admin.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Id Jabatan</label>
+                              <label class="col-sm-2 col-sm-2 control-label">User ID</label>
                               <div class="col-sm-8">
-                                  <input name="id_jabatan" type="text" id="id_jabatan" class="form-control" placeholder="Tidak perlu di isi" value="<?php $a="J"; $b=rand(1000,10000); $c=$a.$b; echo $c; ?>" autofocus="on" readonly="readonly" />
+                                  <input name="user_id" type="text" id="user_id" class="form-control" placeholder="Tidak perlu di isi" autofocus="on" readonly="readonly" />
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Jabatan</label>
+                              <label class="col-sm-2 col-sm-2 control-label">Username</label>
                               <div class="col-sm-8">
-                                  <input name="jabatan" type="text" id="jabatan" class="form-control" placeholder="Jabatan" autocomplete="off" required />
+                                  <input name="username" type="text" id="username" class="form-control" placeholder="Username" autocomplete="off" required />
                                   <!--<span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>-->
                               </div>
                           </div>
                           <div class="form-group">
-                              <label class="col-sm-2 col-sm-2 control-label">Tunjangan</label>
+                              <label class="col-sm-2 col-sm-2 control-label">Password</label>
                               <div class="col-sm-8">
-                                  <input name="tunjangan" type="text" id="tunjungan" class="form-control" placeholder="Tunjangan" autocomplete="off" required />
-                                  <!--<span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>-->
+                                  <input name="password" type="text" id="password" class="form-control" placeholder="password" autocomplete="off" required />
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Fullname</label>
+                              <div class="col-sm-8">
+                                  <input name="fullname" class="form-control" id="fullname" type="text" placeholder="Fullname" autocomplete="off" required />
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">No Handphone</label>
+                              <div class="col-sm-8">
+                                  <input name="no_hp" class="form-control" id="no_hp" type="text" placeholder="No Handphone" autocomplete="off" required />
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Level</label>
+                              <div class="col-sm-3">
+                            <select name="level" class="form-control" required>
+							<option value=""> -- Pilih Level Pengguna -- </option>
+							<option value="admin">Admin</option>
+							<option value="superuser">Superuser</option>
+                            <option value="user">User</option>
+						    </select>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Gambar</label>
+                              <div class="col-sm-6">
+                                  <input name="nama_file" id="nama_file" class="form-control" type="file" required="required"/>
                               </div>
                           </div>
                           <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label"></label>
                               <div class="col-sm-10">
-                                  <input type="submit" name="simpan" value="Simpan" class="btn btn-sm btn-primary" />&nbsp;
-	                              <a href="input-jabatan.php" class="btn btn-sm btn-danger">Batal </a>
+                                  <input type="submit" value="Simpan" class="btn btn-sm btn-primary" />&nbsp;
+	                              <a href="input-admin.php" class="btn btn-sm btn-danger">Batal </a>
                               </div>
                           </div>
                       </form>
